@@ -1,0 +1,545 @@
+/* ==========================================================
+   Sarah Chen – copia del sitio publicado en Figma Sites
+   (https://buzz-scuba-lyric.figma.site)
+   Solo HTML + CSS. Medidas tomadas del sitio real a 1280px y 375px.
+   ========================================================== */
+
+/* ---------- 1. Fuentes (los mismos archivos que usa el sitio real) ---------- */
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("assets/fonts/SourceSerifPro-Light.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("assets/fonts/SourceSerifPro-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("assets/fonts/SourceCodePro.woff2") format("woff2");
+  font-weight: 200 900; /* es una fuente variable: sirve para 400 y 500 */
+}
+
+/* ---------- 2. Colores ---------- */
+:root {
+  --negro: #000000;
+  --azul: #0034ad;
+  --magenta: #ab0782;
+  --oliva: #6e660a;
+  --oliva-claro: #7f750e;
+  --morado: #5f00ad;
+  --gris: #4f4f4f;
+  --gris-texto: #313131;
+}
+
+/* ---------- 3. Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Source Serif Pro", Georgia, serif;
+  font-weight: 300;
+  color: var(--negro);
+  background: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Contenedor: 50px de margen a los lados, máximo 1500px de contenido */
+.contenedor {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+/* ---------- 4. Estilos de texto ---------- */
+
+/* Texto grande (50px en escritorio) */
+.grande {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 60px;
+  letter-spacing: -1.125px;
+}
+
+/* Etiqueta: "Design", "Artwork"... */
+.etiqueta {
+  font-family: "Source Code Pro", monospace;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16.48px;
+  letter-spacing: -0.1152px;
+  text-decoration: underline;
+}
+
+/* Texto pequeño monoespaciado (página About) */
+.mono {
+  font-family: "Source Code Pro", monospace;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16.48px;
+  letter-spacing: -0.1152px;
+}
+
+/* Colores */
+.azul    { color: var(--azul); }
+.magenta { color: var(--magenta); }
+.oliva   { color: var(--oliva); }
+.morado  { color: var(--morado); }
+
+/* ---------- 5. Botón "Explore" ---------- */
+.boton {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: "Source Code Pro", monospace;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16.48px;
+  letter-spacing: -0.72px;
+  border: 1px solid currentColor;
+  padding: 3px 9px 6px;
+  white-space: pre;   /* respeta el espacio final de "Explore " */
+}
+
+.boton:hover {
+  background: var(--negro);
+  color: #ffffff;
+  border-color: var(--negro);
+}
+
+.boton.oliva { color: var(--oliva-claro); }
+
+/* ---------- 6. Navegación ---------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  z-index: 10;
+  /* degradado blanco -> transparente de izquierda a derecha */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+}
+
+.nav-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.nav-nombre {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Foto redonda: se recorta la foto grande igual que en Figma */
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.avatar img {
+  width: 260%;
+  max-width: none;
+  margin-left: -100%;
+  margin-top: -56.6%;
+}
+
+.nav-nombre h1 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 36.48px;
+  letter-spacing: -0.2592px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  font-family: "Source Code Pro", monospace;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16.48px;
+  letter-spacing: -0.72px;
+}
+
+.nav-links .home    { color: var(--magenta); }
+.nav-links .about   { color: var(--oliva-claro); }
+.nav-links .contact { color: var(--morado); }
+.nav-links a { display: block; }
+.nav-links a:hover  { opacity: 0.7; }
+
+/* ---------- 7. HOME ---------- */
+.intro {
+  padding: 200px 100px 39px 0;
+}
+
+/* Fila de proyecto: texto a la izquierda, foto a la derecha */
+.proyecto {
+  display: flex;
+  gap: 50px;
+  padding: 49px 0 80px;    /* 49px + 1px de línea = 50px */
+  border-top: 1px solid;   /* el color viene de .azul, .magenta... */
+}
+
+.proyecto-texto,
+.proyecto-foto {
+  flex: 1;
+  min-width: 0;
+}
+
+.proyecto-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.proyecto-foto {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.proyecto-foto img {
+  height: 100%;
+}
+
+.redondeada { border-radius: 4px; }
+
+/* La pintura abstracta sale un poco ampliada en el sitio real */
+.ampliada { border-radius: 4px; }
+
+.ampliada img {
+  width: 106.2%;
+  height: auto;
+  max-width: none;
+  margin: -2.7% 0 0 -3%;
+}
+
+.proyecto.ultimo { gap: 88px; }
+
+.cierre {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 30px 120px 120px 0;
+}
+
+.cierre p { max-width: 855px; }
+
+/* ---------- 8. ABOUT ---------- */
+.sobre-mi {
+  padding: 200px 0 100px;
+}
+
+.sobre-mi p + p { margin-top: 60px; }
+
+.ahora {
+  display: flex;
+  gap: 50px;
+  padding-bottom: 100px;
+}
+
+.ahora-titulo,
+.ahora-lista {
+  flex: 1;
+  min-width: 0;
+}
+
+.ahora-titulo {
+  border-top: 1px solid var(--gris);
+  padding: 39px 0 40px;
+}
+
+.ahora-fila {
+  display: flex;
+  gap: 19px;
+  border-top: 1px solid var(--gris);
+  padding: 29px 0 30px;
+}
+
+/* Retrato: recorte igual que en el sitio real */
+.retrato {
+  aspect-ratio: 565 / 563;
+  overflow: hidden;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.retrato img {
+  width: 123%;
+  max-width: none;
+  margin: -18% 0 0 -11.5%;
+}
+
+/* ---------- 9. PROJECT ---------- */
+.proyecto-cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding: 200px 100px 80px 0;
+}
+
+.foto {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 30px 0 80px;
+}
+
+.foto figcaption {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.72px;
+  color: var(--gris-texto);
+}
+
+/* Ancho y posición de cada foto (igual que el sitio a 1280px) */
+.foto-1 { width: 59.32%; margin: 0 auto; }            /* 700px centrada */
+.foto-1 figcaption { text-align: center; }
+.foto-1 img { aspect-ratio: 700 / 932; }
+
+.foto-2 { width: 74.58%; }                             /* 880px izquierda */
+.foto-2 img { aspect-ratio: 880 / 660; }
+
+.foto-3 { width: 83.05%; margin-left: auto; }          /* 980px derecha */
+.foto-3 img { aspect-ratio: 980 / 654; }
+
+.foto-4 img { aspect-ratio: 1180 / 684; }              /* ancho completo */
+
+.foto-5 { width: 77.97%; margin: 0 auto; }             /* 920px centrada */
+.foto-5 img { aspect-ratio: 920 / 614; }
+
+.foto-6 img { aspect-ratio: 1180 / 644; }              /* ancho completo */
+
+.texto-galeria {
+  padding: 0 100px 80px 0;
+}
+
+/* ---------- 10. "More projects" ---------- */
+.mas {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  border-top: 1px solid var(--gris);
+  padding: 29px 0 30px;
+}
+
+.mas .etiqueta-gris {
+  color: var(--gris);
+}
+
+/* En la página Project el título y la etiqueta son un poco distintos */
+.mas-project > .grande {
+  line-height: 62.5px;
+  letter-spacing: -2.25px;
+}
+
+.mas-project .etiqueta-gris {
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.tarjetas {
+  display: flex;
+  gap: 48px;
+}
+
+.tarjeta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 49px 0 50px;
+  border-top: 1px solid;
+}
+
+.tarjeta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+/* ---------- 11. Footer ---------- */
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--gris);
+  padding: 29px 0 150px;
+}
+
+.footer-links a {
+  text-decoration: underline;
+  transition: opacity 0.3s;
+}
+
+.footer-links a:hover { opacity: 0.7; }
+
+.copyright {
+  padding-bottom: 80px;
+}
+
+/* ==========================================================
+   TABLET (800px - 1279px)
+   ========================================================== */
+@media (max-width: 1279px) {
+  .grande {
+    font-size: 36px;
+    line-height: 45px;
+    letter-spacing: -1.08px;
+  }
+
+  .intro { padding: 200px 80px 80px 0; }
+
+  .foto-1, .foto-5 { width: 71.4%; }
+  .foto-2 { width: 71.4%; }
+  .foto-3 { width: 71.4%; }
+
+  .tarjetas { flex-direction: column; }
+  .tarjeta { flex-direction: row; padding-bottom: 50px; }
+  .tarjeta-info, .tarjeta .proyecto-foto { flex: 1; }
+
+  .ahora { flex-direction: column; }
+}
+
+/* ==========================================================
+   MÓVIL (menos de 800px)
+   ========================================================== */
+@media (max-width: 799px) {
+  .contenedor { padding: 0 20px; }
+
+  .grande {
+    font-size: 28px;
+    line-height: 37.8px;
+    letter-spacing: -0.2352px;
+  }
+
+  .etiqueta,
+  .mono {
+    font-size: 12px;
+    line-height: 12.36px;
+    letter-spacing: -0.0648px;
+  }
+
+  /* Navegación: no fija, nombre arriba y foto debajo */
+  .nav {
+    position: static;
+    height: 189px;
+    margin: 0 20px;
+    border-bottom: 1px solid var(--gris);  /* línea gris bajo el menú */
+  }
+
+  .nav-contenido {
+    align-items: flex-start;
+    padding: 20px 20px 0;
+  }
+
+  .nav-nombre {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .nav-nombre h1 {
+    font-size: 20px;
+    line-height: 30.4px;
+    letter-spacing: -0.18px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 2.667px 2.667px rgba(0, 0, 0, 0.25);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 30px;
+  }
+
+  /* Home */
+  .intro { padding: 80px 0 80px; }
+
+  .proyecto,
+  .proyecto.ultimo {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .proyecto.ultimo { gap: 88px; }
+
+  .cierre { padding-right: 0; }
+
+  /* About */
+  .sobre-mi { padding-top: 30px; }
+  .sobre-mi p + p { margin-top: 68px; }
+
+  .ahora { gap: 50px; }
+
+  .ahora-fila { padding: 29px 0 30px; }
+
+  /* Project */
+  .proyecto-cabecera { padding: 72px 100px 80px 0; }
+
+  .foto,
+  .foto-1, .foto-2, .foto-3, .foto-5 {
+    width: 100%;
+    padding: 30px 0 50px;
+  }
+
+  .foto-1 img { aspect-ratio: 335 / 446; }
+  .foto-2 img { aspect-ratio: 335 / 251; }
+  .foto-3 img, .foto-5 img { aspect-ratio: 335 / 224; }
+  .foto-4 img { aspect-ratio: 335 / 194; }
+  .foto-6 img { aspect-ratio: 1 / 1; }
+
+  .texto-galeria { padding: 0 0 80px; }
+
+  /* More projects */
+  .mas .etiqueta-gris { color: var(--negro); }
+
+  .mas-project > .grande {
+    line-height: 37.8px;
+    letter-spacing: -0.2352px;
+  }
+
+  .mas-project .etiqueta-gris {
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  .tarjeta,
+  .tarjeta-info, .tarjeta .proyecto-foto {
+    flex-direction: column;
+  }
+
+  .tarjeta { padding-bottom: 50px; }
+  .tarjeta .boton { line-height: 20px; padding: 3px 9px; }
+
+  /* Footer */
+  .footer-links {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer-links a { align-self: flex-start; }
+}
